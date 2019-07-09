@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hurdle Champ Quiz</title>
+    <link href="./css/bootstrap.min.css" rel="stylesheet" />
+    <link href="./css/styles.css" rel="stylesheet" />
+	<link href="./css/hurdle.css" rel="stylesheet" />
+	<link href='http://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+    <script src="./js/jquery-2.1.4.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/angular.min.js"></script>
+    <script src="./js/mainController.js"></script>
+	
+</head>
+<!--Load Module-->
+<body ng-app="HurdleChamp">
+	<!--Load Controller-->
+    <div ng-controller="MainController">
+		<div class="page-header">
+		<!-- image reference: http://www.clker.com/cliparts/F/Z/J/3/Y/F/olympic-runner-dark-blue-hi.png-->
+			<div class="top-header"> 
+				<h1>Hurdle Champ Runner <small>Learning has never been so fun!</small> <img alt="Brand" src="./imgs/olympic-runner-dark-blue-hi-10percent.png"></h1> 
+			</div>
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="#"> Home Page</a
+					</div>
+				</div>
+			</nav>
+		</div>
+				
+	<div class="wrapper">
+		<canvas id="canvas" width="800" height="480">
+			<p>You're browser does not support the required functionality to play this game.</p>
+			<p>Please update to a modern browser such as <a href="www.google.com/chrome/‎">Google Chrome</a> to play.</p>
+		</canvas>
+	</div>
+        <div class="container">
+            <div class="row">
+                <h1>Hurdle Champ Quiz</h1>
+		
+                <!--Loop through questions in array-->
+                <div class="row" ng-repeat="item in questions" ng-show="$index == currentQuestion">
+                    <div class="col-md-12"><h3>{{item.question}}</h3></div>
+                    <div class="col-md-6" ng-repeat="answer in item.answers">
+                        <!--| orderBy:random-->
+                        <div class="btn btn-info btn-block" ng-click="checkAnswer(item.question, answer)">{{answer}}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert {{alertType}}">
+                            <strong>{{answerResponse}}</strong>
+                            <br />
+                            <br />
+                            <p>{{error}}</p>
+                            <div ng-repeat="image in images"><img ng-src="{{image}}" /></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row quiz-next-button">
+                    <div class="col-md-3 pull-right">
+                        <div ng-hide="finished">
+                            <button class="btn btn-primary" ng-click="nextQuestion()" ng-hide="lastQuestion" ng-disabled="buttonDisabled">Next Question</button>
+                            <button class="btn btn-success" ng-click="finishQuiz()" ng-show="lastQuestion" ng-disabled="buttonDisabled">Finish</button>
+                        </div>
+                        <button class="btn btn-info" ng-click="restartQuiz()" ng-show="finished">Take Quiz Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+   <footer class="clearfix">
+    <div class="left">
+      <h4>Group Name</h4>
+		<p>DECO1800 - BLUE EYES WHITE DRAGON </p>
+    </div>
+    <div class="right">
+      <h4>Group Members</h4>
+      <p>Saurav / Jee / Zainab / Jesse / Anson</p>
+      </div>
+  </footer>
+  
+<script src="./js/hurdle.js"></script>
+
+</body>
+</html>
